@@ -91,3 +91,31 @@ pipenv run python manage.py createsuperuser
 pipenv run python manage.py makemigrations
 pipenv run python manage.py migrate
 ```
+
+### 5. 视图和模板
+
+1. templates下更改dir[]: "DIRS": [os.path.join(BASE_DIR, "templates")]
+2. 主URL配置：path("", include("blogapp.urls"))
+3. appURL配置：
+
+    ```python
+    from django.urls import path
+
+    from . import views
+
+    urlpatterns = [
+        path("", views.index, name="index"),
+    ]
+    ```
+
+4. 更改视图：
+
+    ```python
+    from django.shortcuts import render
+
+
+    def index(request):
+        return render(
+            request, "blog/index.html", context={"title": "我的博客首页", "welcome": "欢迎访问我的博客首页"}
+        )
+    ```
