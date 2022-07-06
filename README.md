@@ -34,3 +34,9 @@ pipenv run python manage.py startapp blogapp
 ```
 
 在setting里面 installapp里注册 blogAPP
+
+## 3. 新建数据模型
+
+blogapp/models.py
+
+主要是一对多多对多关系的理解,后续项目的复杂数据库逻辑的设计
