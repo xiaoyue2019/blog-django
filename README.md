@@ -40,3 +40,54 @@ pipenv run python manage.py startapp blogapp
 blogapp/models.py
 
 主要是一对多多对多关系的理解,后续项目的复杂数据库逻辑的设计
+
+## 4. 数据库操作
+
+```python
+from blogapp.models import Tag, Post, Category
+from django.utils import timezone
+from django.contrib.auth.models import User
+
+c = Category(name="category test")
+t = Tag(name="Tag test")
+
+c.save()
+t.save()
+print("分类、标签创建完毕")
+
+user = User.objects.get(username="xiaoyue")
+c = Category.objects.get(name="category test")
+
+p = Post(
+    title="title test",
+    body="body test",
+    created_time=timezone.now(),
+    modified_time=timezone.now(),
+    category=c,
+    author=user,
+)
+p.save()
+print("文章创建完毕")
+
+c = Category.objects.get(name="category test")
+c.name = "category test new"
+c.save()
+print("修改后的category为：{}".format(Category.objects.all()))
+
+p = Post.objects.get(title="title test")
+p.delete()
+print("删除成功")
+```
+
+创建账号
+
+```bash
+pipenv run python manage.py createsuperuser
+```
+
+制造迁移文件、迁移数据库
+
+```bash
+pipenv run python manage.py makemigrations
+pipenv run python manage.py migrate
+```
