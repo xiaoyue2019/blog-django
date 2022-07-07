@@ -119,3 +119,11 @@ pipenv run python manage.py migrate
             request, "blog/index.html", context={"title": "我的博客首页", "welcome": "欢迎访问我的博客首页"}
         )
     ```
+
+Django开发流程：
+    1. 配置APP中的url.py使其与视图绑定
+    2. 在工程url.py中引入
+    3. 编写视图
+    4. 在setting中引入模板
+
+做不下去了，前后端不分离真的难受死了，这辈子不想搞前端啊啊啊啊啊啊
